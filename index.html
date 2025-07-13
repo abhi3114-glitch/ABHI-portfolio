@@ -1,10 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Abhi's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -17,27 +18,10 @@
       animation: gradientBG 20s ease infinite;
     }
 
-    @media (pointer: fine) {
-      body { cursor: none; }
-      #cursor { display: block; }
-    }
-    @media (pointer: coarse) {
-      #cursor { display: none; }
-    }
-
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-
-    #cursor {
-      position: fixed;
-      width: 20px; height: 20px;
-      border: 2px solid #66fcf1; border-radius: 50%;
-      pointer-events: none; transform: translate(-50%, -50%);
-      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
-      z-index: 9999;
     }
 
     header {
@@ -181,11 +165,9 @@
   </style>
 </head>
 <body>
-  <div id="cursor"></div>
   <header>
     <div id="logo">
       <strong>Abhi</strong>
-      <div id="lottie-spark" style="width: 30px; height: 30px;"></div>
     </div>
     <nav>
       <a href="#about">About</a>
@@ -252,12 +234,6 @@
   <footer>Build it. Break it. Improve it. &copy; 2025 Abhishek Pratap Singh Chauhan</footer>
 
   <script>
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
     const words = ["Computer Science Student", "AI Builder", "Creative Problem Solver"];
     let i = 0; let timer;
     function typingEffect() {
@@ -308,15 +284,6 @@
     });
     closeBtn.onclick = () => { modal.style.display = "none"; };
     window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
-
-    const spark = bodymovin.loadAnimation({
-      container: document.getElementById('lottie-spark'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'lottie/spark.json'
-    });
   </script>
 </body>
 </html>
-
