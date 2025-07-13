@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abhi's Valorant Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #eee;
+      background: url('https://wallpapercave.com/wp/wp6423382.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 0;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-images {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .hero img.profile {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ff00aa;
+      box-shadow: 0 0 30px #ff00aa;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero img.badge {
+      width: 70px;
+      transition: transform 0.3s;
+    }
+
+    .hero img.badge:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .hero img.prx-logo {
+      width: 50px; margin-top: 15px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    h1 {
+      color: #ff00aa;
+      font-size: 2.5em;
+      margin: 20px 0 5px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      z-index: 1;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #ff00aa;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    .box p {
+      margin: 10px 0;
+    }
+
+    .box h2 {
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ff00aa;
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .box ul li {
+      margin: 5px 0;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .box ul li:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .role {
+      margin: 8px 0;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .role:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .prx-team {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+      border: 2px solid #ff00aa;
+    }
+
+    .valorant-insta {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 20px;
+      background: #ff00aa;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+
+    .valorant-insta:hover {
+      box-shadow: 0 0 20px #ff00aa;
+      transform: translateY(-2px);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: #00ffff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+
+    .back-btn:hover {
+      box-shadow: 0 0 20px #00ffff;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-style: italic;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-images">
+      <img src="images/valorant-profile.jpg" alt="Valorant Profile" class="profile">
+      <img src="images/badge.png" alt="Diamond 2 Badge" class="badge">
+    </div>
+    <h1>Abhi's Valorant Profile</h1>
+    <img src="images/prx-logo.png" alt="PRX Logo" class="prx-logo">
+  </section>
+
+  <main>
+    <div class="box">
+      <p><em>I don’t play for fun — unless it’s for someone really, really special.</em></p>
+      <p><em>I’ve got ego issues — chaotic and unstoppable like PRX.</em></p>
+      <p><strong>Flex Player:</strong> Any role, any time — always ready to lock in.</p>
+    </div>
+
+    <div class="box">
+      <h2>Agents</h2>
+      <p class="role"><strong>Duelists:</strong> Jett, Reyna, Iso, Phoenix</p>
+      <p class="role"><strong>Sentinels:</strong> Cypher, Vyse, Chamber</p>
+      <p class="role"><strong>Controllers:</strong> Viper, Clove, Omen</p>
+      <p class="role"><strong>Initiators:</strong> Breach, Sova, Gekko</p>
+    </div>
+
+    <div class="box">
+      <h2>Skin Collection</h2>
+      <h3>Vandal:</h3>
+      <ul>
+        <li>Dreamwigs, Elderflame, Glitchpop, Arraxys, Magepunk, Kuronami, Gaia's Vengeance, Reaver, Singularity, 4 Battlepass</li>
+      </ul>
+      <h3>Phantom:</h3>
+      <ul>
+        <li>Spectrum, RGX, Nocturnum, Champions 2024, Protocol, Ruination, Prime 2.0, Reaver</li>
+      </ul>
+      <h3>Operator:</h3>
+      <ul>
+        <li>Sentinels of Light</li>
+      </ul>
+      <h3>Ghost:</h3>
+      <ul>
+        <li>Sovereign, Entertainment (All variants)</li>
+      </ul>
+      <h3>Sheriff:</h3>
+      <ul>
+        <li>RGX 3.0</li>
+      </ul>
+      <h3>Odin:</h3>
+      <ul>
+        <li>Reaver</li>
+      </ul>
+      <h3>Outlaw:</h3>
+      <ul>
+        <li>RGX 3.0</li>
+      </ul>
+      <h3>Melee:</h3>
+      <ul>
+        <li>Reaver Dagger, RGX Karambit, Champions 2024, Magepunk Spark Switch (Butterfly)</li>
+      </ul>
+      <h3>Bundles:</h3>
+      <ul>
+        <li>RGX 3.0, Champions 2024</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Paper Rex</h2>
+      <p>Favorite Team: Paper Rex 🐉 | Favorite Player: PRX Forsaken</p>
+      <p>Inspired by PRX’s chaotic, egoistic playstyle — always pushing limits.</p>
+      <img src="images/prx-team.jpg" alt="Paper Rex Team" class="prx-team">
+    </div>
+
+    <div class="box">
+      <h2>TL NATS</h2>
+      <p>I learned to play Cypher & Viper from TL NATS — the real setup GOAT.</p>
+    </div>
+
+    <div class="box">
+      <h2>My Valorant Instagram</h2>
+      <p>Check out my clips and memes —</p>
+      <a href="https://www.instagram.com/the_egoistic._guy/" target="_blank" class="valorant-insta">Visit Valorant Insta</a>
+    </div>
+
+    <div class="box">
+      <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    </div>
+
+    <footer>"Lock it in. Flex it all. Never eco."</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abhi's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #c5c6c7;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0b0c10, #1f2833, #0b0c10);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      cursor: none;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    #cursor {
+      position: fixed;
+      width: 20px; height: 20px;
+      border: 2px solid #66fcf1; border-radius: 50%;
+      pointer-events: none; transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+      z-index: 9999;
+    }
+    header {
+      position: fixed; width: 100%; background: #1f2833; padding: 20px;
+      z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+    }
+    #logo {
+      display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer;
+    }
+    #logo:hover::after {
+      content: "Flex. Clutch. Repeat.";
+      position: absolute; bottom: -20px; left: 0;
+      font-size: 0.7em; color: #66fcf1;
+    }
+    nav a {
+      color: #66fcf1; margin: 0 15px; text-decoration: none; font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #45a29e; }
+    .valorant-switch {
+      background: #66fcf1; color: #0b0c10; padding: 8px 15px; border-radius: 5px;
+      text-decoration: none; font-weight: 600; transition: background 0.3s;
+    }
+    .valorant-switch:hover { background: #45a29e; color: #fff; }
+
+    .hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100vh; position: relative; text-align: center;
+    }
+    .hero img {
+      border-radius: 50%;
+      width: 200px; height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border: 5px solid #66fcf1;
+      box-shadow: 0 0 30px #45a29e;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .floating-shape {
+      position: absolute; border-radius: 50%;
+      background: rgba(102,252,241,0.2);
+      animation: floatShape 8s ease-in-out infinite alternate;
+    }
+    .shape1 { width: 100px; height: 100px; top: 20%; left: 10%; }
+    .shape2 { width: 80px; height: 80px; top: 50%; right: 15%; animation-delay: 2s; }
+    .shape3 { width: 60px; height: 60px; bottom: 20%; left: 40%; animation-delay: 4s; }
+    @keyframes floatShape {
+      from { transform: translateY(0) rotate(0); }
+      to { transform: translateY(-20px) rotate(45deg); }
+    }
+
+    h1 {
+      font-size: 3em; margin: 20px 0 10px; color: #66fcf1;
+    }
+    .typing {
+      font-weight: 600; font-size: 1.2em; color: #66fcf1; min-height: 30px;
+    }
+    section {
+      max-width: 1000px; margin: 100px auto; padding: 0 20px;
+      opacity: 0; transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+    h2 {
+      position: relative; display: inline-block; margin-bottom: 10px;
+    }
+    h2::after {
+      content: ""; display: block; height: 3px;
+      background: linear-gradient(90deg, #66fcf1, #45a29e);
+      margin-top: 5px; width: 50px;
+    }
+    .projects {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: #1f2833; border-radius: 10px; padding: 20px;
+      border: 1px solid #45a29e;
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+    }
+    .project:hover {
+      transform: rotateY(5deg) scale(1.02);
+      box-shadow: 0 0 20px #45a29e;
+    }
+    .contact a {
+      display: inline-block; margin: 10px 15px 0 0; text-decoration: none;
+      color: #66fcf1; border: 2px solid #66fcf1;
+      padding: 10px 15px; border-radius: 5px;
+      transition: all 0.3s;
+    }
+    .contact a:hover { background: #66fcf1; color: #0b0c10; }
+    footer {
+      text-align: center; padding: 40px 20px;
+      background: #1f2833; color: #66fcf1; font-style: italic;
+    }
+    .modal {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.8);
+      justify-content: center; align-items: center; z-index: 2000;
+    }
+    .modal-content {
+      background: #1f2833; padding: 30px; border-radius: 10px;
+      max-width: 600px; color: #fff; text-align: center; position: relative;
+    }
+    .modal-content img { width: 100%; border-radius: 10px; margin-top: 10px; }
+    .close {
+      position: absolute; top: 15px; right: 20px;
+      font-size: 28px; cursor: pointer; color: #66fcf1;
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <header>
+    <div id="logo">
+      <strong>Abhi</strong>
+      <div id="lottie-spark" style="width: 30px; height: 30px;"></div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#opinions">My Thoughts</a>
+      <a href="#contact">Contact</a>
+      <a href="valorant.html" class="valorant-switch">Valorant Profile</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <img src="images/profile.jpg" alt="Profile" />
+    <h1>Hi, I'm Abhi</h1>
+    <div class="typing" id="typing"></div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Abhishek Pratap Singh Chauhan — a Computer Science student at VIT Bhopal. I create smart AI systems, 3D virtual companions, and web projects like SkyBook and health emergency solutions. I love testing ideas and pushing the boundaries of what AI can do.</p>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects">
+      <div class="project"><h3>CardioPredict</h3><p>Deep learning to predict cardiovascular risks from retina images.</p></div>
+      <div class="project"><h3>Jarvis AI</h3><p>Voice-controlled assistant with futuristic holographic UI.</p></div>
+      <div class="project"><h3>Fashion Outfit Recommender</h3><p>ML system for outfit suggestions matching user style.</p></div>
+      <div class="project"><h3>3D Virtual AI Companion</h3><p>3D avatar companion with human-like conversation.</p></div>
+      <div class="project"><h3>SkyBook</h3><p>Booking.com clone for full-stack practice and UI design.</p></div>
+      <div class="project"><h3>Emergency Health Risk Notification</h3><p>Smart system to detect health risks and alert in real time.</p></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <p>My stack: Python, TensorFlow, Scikit-Learn, OpenCV, Flask, modern web tech, and 3D rendering basics (WebGL).</p>
+  </section>
+
+  <section id="opinions">
+    <h2>My Thoughts</h2>
+    <p>Tech should feel alive, human, and helpful. I love building AI that talks, learns, and creates real impact.</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <a href="https://www.instagram.com/abhi_chauhanz/" target="_blank">Instagram</a>
+    <a href="https://t.me/kai_3114" target="_blank">Telegram</a>
+    <a href="https://github.com/abhi3114-glitch" target="_blank">GitHub</a>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+      <img id="modal-img" src="" alt="Project Image">
+    </div>
+  </div>
+
+  <footer>Build it. Break it. Improve it. &copy; 2025 Abhishek Pratap Singh Chauhan</footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    const words = ["Computer Science Student", "AI Builder", "Creative Problem Solver"];
+    let i = 0; let timer;
+    function typingEffect() {
+      let word = words[i].split("");
+      const loopTyping = function() {
+        if (word.length > 0) {
+          document.getElementById('typing').innerHTML += word.shift();
+        } else { setTimeout(deletingEffect, 2000); return false; }
+        timer = setTimeout(loopTyping, 100);
+      };
+      loopTyping();
+    }
+    function deletingEffect() {
+      let word = words[i].split("");
+      const loopDeleting = function() {
+        if (word.length > 0) {
+          word.pop();
+          document.getElementById('typing').innerHTML = word.join("");
+        } else { i = (i + 1) % words.length; typingEffect(); return false; }
+        timer = setTimeout(loopDeleting, 50);
+      };
+      loopDeleting();
+    }
+    typingEffect();
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 600;
+        const height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) { sec.classList.add("visible"); }
+      });
+    });
+    const modal = document.getElementById("modal");
+    const closeBtn = document.querySelector(".close");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalImg = document.getElementById("modal-img");
+    document.querySelectorAll(".project").forEach(card => {
+      card.addEventListener("click", () => {
+        modalTitle.innerText = card.querySelector("h3").innerText;
+        modalDesc.innerText = card.querySelector("p").innerText;
+        modalImg.src = "images/placeholder.png";
+        modal.style.display = "flex";
+      });
+    });
+    closeBtn.onclick = () => { modal.style.display = "none"; };
+    window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
+    const spark = bodymovin.loadAnimation({
+      container: document.getElementById('lottie-spark'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'lottie/spark.json'
+    });
+  </script>
+</body>
+</html>
