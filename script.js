@@ -26,8 +26,7 @@ const projects = [
         category: "fullstack",
         tech: ["TypeScript", "React", "Node.js", "Docker"],
         github: "https://github.com/abhi3114-glitch/AUTODEV",
-        demo: null,
-        emoji: "🚀"
+        demo: null
     },
     {
         id: 2,
@@ -36,8 +35,7 @@ const projects = [
         category: "ai",
         tech: ["TypeScript", "Next.js", "WebRTC", "AI"],
         github: "https://github.com/abhi3114-glitch/GuardianGrid",
-        demo: null,
-        emoji: "🛡️"
+        demo: null
     },
     {
         id: 3,
@@ -46,8 +44,7 @@ const projects = [
         category: "fullstack",
         tech: ["JavaScript", "Next.js", "Flask", "AI"],
         github: "https://github.com/abhi3114-glitch/FINVISION",
-        demo: "https://finvision-blond.vercel.app",
-        emoji: "💰"
+        demo: "https://finvision-blond.vercel.app"
     },
     {
         id: 4,
@@ -56,8 +53,7 @@ const projects = [
         category: "ai",
         tech: ["TypeScript", "Next.js", "FastAPI", "Gemini AI"],
         github: "https://github.com/abhi3114-glitch/IdeaSynth",
-        demo: null,
-        emoji: "💡"
+        demo: null
     },
     {
         id: 5,
@@ -66,8 +62,7 @@ const projects = [
         category: "ai",
         tech: ["Python", "YOLO", "MediaPipe", "Flask"],
         github: "https://github.com/abhi3114-glitch/GuardianEye",
-        demo: null,
-        emoji: "👁️"
+        demo: null
     },
     {
         id: 6,
@@ -76,8 +71,7 @@ const projects = [
         category: "ai",
         tech: ["TypeScript", "React", "AI", "ML"],
         github: "https://github.com/abhi3114-glitch/CIAS",
-        demo: "https://cias-x.vercel.app",
-        emoji: "🧠"
+        demo: "https://cias-x.vercel.app"
     },
     {
         id: 7,
@@ -86,8 +80,7 @@ const projects = [
         category: "fullstack",
         tech: ["TypeScript", "Next.js", "PostgreSQL"],
         github: "https://github.com/abhi3114-glitch/CIVIL-MIND-",
-        demo: "https://civil-mind.vercel.app",
-        emoji: "⚖️"
+        demo: "https://civil-mind.vercel.app"
     },
     {
         id: 8,
@@ -96,8 +89,7 @@ const projects = [
         category: "ai",
         tech: ["Python", "FastAPI", "React", "LLMs"],
         github: "https://github.com/abhi3114-glitch/LLM-COUNCIL-V2",
-        demo: "https://llm-council-v2.vercel.app",
-        emoji: "🤖"
+        demo: "https://llm-council-v2.vercel.app"
     },
     {
         id: 9,
@@ -106,8 +98,7 @@ const projects = [
         category: "fullstack",
         tech: ["TypeScript", "React", "Three.js", "3D"],
         github: "https://github.com/abhi3114-glitch/EduOrbit",
-        demo: null,
-        emoji: "🛰️"
+        demo: null
     },
     {
         id: 10,
@@ -116,8 +107,7 @@ const projects = [
         category: "devops",
         tech: ["TypeScript", "Docker", "Kubernetes", "AI"],
         github: "https://github.com/abhi3114-glitch/INFRAMIND",
-        demo: null,
-        emoji: "☁️"
+        demo: null
     },
     {
         id: 11,
@@ -126,8 +116,7 @@ const projects = [
         category: "devops",
         tech: ["TypeScript", "Node.js", "Docker", "CI/CD"],
         github: "https://github.com/abhi3114-glitch/DEPLOYSENSE",
-        demo: null,
-        emoji: "🔄"
+        demo: null
     },
     {
         id: 12,
@@ -136,8 +125,7 @@ const projects = [
         category: "ai",
         tech: ["Python", "ML", "TensorFlow", "Privacy"],
         github: "https://github.com/abhi3114-glitch/LifeEcho",
-        demo: null,
-        emoji: "🔮"
+        demo: null
     }
 ];
 
@@ -338,9 +326,9 @@ function renderProjects(filter = 'all') {
 
     projectsGrid.innerHTML = filteredProjects.map((project, index) => `
         <div class="project-card reveal" style="animation-delay: ${index * 0.1}s">
-            <div class="project-image">
-                <div class="project-placeholder">${project.emoji}</div>
-                <div class="project-overlay">
+            <div class="project-content">
+                <div class="project-header">
+                    <span class="project-category">${project.category}</span>
                     <div class="project-links">
                         <a href="${project.github}" target="_blank" rel="noopener" class="project-link" aria-label="View Code">
                             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -358,9 +346,6 @@ function renderProjects(filter = 'all') {
                         ` : ''}
                     </div>
                 </div>
-            </div>
-            <div class="project-content">
-                <span class="project-category">${project.category}</span>
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
                 <div class="project-tech">
