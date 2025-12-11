@@ -172,6 +172,96 @@ const projects = [
         github: "https://github.com/abhi3114-glitch/DEPLOYSENSE",
         demo: null,
         featured: false
+    },
+    {
+        id: 14,
+        title: "ZenCache",
+        description: "High-performance in-memory caching system with custom eviction policies and thread-safe operations.",
+        category: "backend",
+        tech: ["Go", "Concurrency", "Data Structures", "Cache"],
+        github: "https://github.com/abhi3114-glitch/ZenCache",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 15,
+        title: "TideQueue",
+        description: "A lightweight distributed message queue optimized for low latency and high throughput delivery.",
+        category: "backend",
+        tech: ["Rust", "Networking", "Distributed Systems", "Total Order"],
+        github: "https://github.com/abhi3114-glitch/TideQueue",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 16,
+        title: "SkyLock",
+        description: "Secure encryption and key management service designed for cloud-native applications.",
+        category: "backend",
+        tech: ["Go", "Cryptography", "Security", "AES"],
+        github: "https://github.com/abhi3114-glitch/SkyLock",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 17,
+        title: "SnapSync",
+        description: "Real-time bidirectional file synchronization tool for distributed systems and weak networks.",
+        category: "backend",
+        tech: ["C++", "Networking", "File Systems", "Sync"],
+        github: "https://github.com/abhi3114-glitch/SnapSync",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 18,
+        title: "Mini-Raft",
+        description: "Educational implementation of the Raft Consensus Algorithm for understanding system fault tolerance.",
+        category: "backend",
+        tech: ["Go", "Raft", "Consensus", "Distributed Systems"],
+        github: "https://github.com/abhi3114-glitch/Mini-Raft",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 19,
+        title: "AetherDB",
+        description: "Embedded key-value storage engine featuring ACID transactions and a log-structured merge-tree.",
+        category: "backend",
+        tech: ["Rust", "Database", "LSM Tree", "Storage"],
+        github: "https://github.com/abhi3114-glitch/AetherDB",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 20,
+        title: "Hermes",
+        description: "Unified notification routing service capable of aggregating SMS, Email, and Push channels.",
+        category: "fullstack",
+        tech: ["Node.js", "Redis", "WebSockets", "API"],
+        github: "https://github.com/abhi3114-glitch/Hermes",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 21,
+        title: "OmniTrace",
+        description: "Distributed tracing system for monitoring microservices latency and request flows.",
+        category: "devops",
+        tech: ["Go", "Observability", "OpenTelemetry", "Tracing"],
+        github: "https://github.com/abhi3114-glitch/OmniTrace",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 22,
+        title: "Mini-GraphDB",
+        description: "A graph database implementation supporting basic node/edge traversal and relationship mapping.",
+        category: "backend",
+        tech: ["C++", "Graph Theory", "Database", "Algorithms"],
+        github: "https://github.com/abhi3114-glitch/Mini-GraphDB",
+        demo: null,
+        featured: false
     }
 ];
 
