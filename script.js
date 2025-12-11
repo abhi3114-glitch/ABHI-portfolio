@@ -11,9 +11,33 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const cursorGlow = document.getElementById('cursorGlow');
 const typingText = document.getElementById('typingText');
+const featuredGrid = document.getElementById('featuredGrid');
 const projectsGrid = document.getElementById('projectsGrid');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const contactForm = document.getElementById('contactForm');
+const themeToggleBtn = document.getElementById('themeToggle');
+const preloader = document.getElementById('preloader');
+
+// ============================================
+// THEME TOGGLE LOGIC
+// ============================================
+// Check for saved theme or system preference
+const savedTheme = localStorage.getItem('theme');
+const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
 
 // ============================================
 // PROJECTS DATA (From GitHub)
@@ -21,113 +45,136 @@ const contactForm = document.getElementById('contactForm');
 const projects = [
     {
         id: 1,
-        title: "AUTODEV",
-        description: "A production-grade developer productivity platform that eliminates onboarding friction and environment inconsistency in modern engineering teams.",
-        category: "fullstack",
-        tech: ["TypeScript", "React", "Node.js", "Docker"],
-        github: "https://github.com/abhi3114-glitch/AUTODEV",
-        demo: null
+        title: "VectorForge",
+        description: "High-performance C++ Vector Database optimized for similarity search and AI applications. Features HNSW indexing and custom memory allocators.",
+        category: "backend",
+        tech: ["C++", "CUDA", "SIMD", "CMake"],
+        github: "https://github.com/abhi3114-glitch/VectorForge",
+        demo: null,
+        featured: true
     },
     {
         id: 2,
-        title: "GuardianGrid",
-        description: "AI Mesh Network Communication for Internet-Less Emergencies. Revolutionary peer-to-peer emergency communication system.",
-        category: "ai",
-        tech: ["TypeScript", "Next.js", "WebRTC", "AI"],
-        github: "https://github.com/abhi3114-glitch/GuardianGrid",
-        demo: null
+        title: "REYNA",
+        description: "A statically typed, compiled programming language built with Python. Features custom lexer, parser, and LLVM-based code generation.",
+        category: "devops",
+        tech: ["Python", "LLVM", "Compilers", "Assembly"],
+        github: "https://github.com/abhi3114-glitch/REYNA",
+        demo: null,
+        featured: true
     },
     {
         id: 3,
-        title: "FINVISION",
-        description: "AI-powered personal finance dashboard built with Flask & Next.js. Smart financial tracking and insights.",
-        category: "fullstack",
-        tech: ["JavaScript", "Next.js", "Flask", "AI"],
-        github: "https://github.com/abhi3114-glitch/FINVISION",
-        demo: "https://finvision-blond.vercel.app"
+        title: "ShardDB",
+        description: "Distributed Key-Value Store implementing Raft consensus for consistency and sharding for horizontal scalability. Fault-tolerant by design.",
+        category: "backend",
+        tech: ["Go", "gRPC", "Raft", "Distributed Systems"],
+        github: "https://github.com/abhi3114-glitch/ShardDB",
+        demo: null,
+        featured: true
     },
     {
         id: 4,
-        title: "IdeaSynth",
-        description: "Intelligent application that transforms user browsing history into structured, viable startup concepts using AI.",
-        category: "ai",
-        tech: ["TypeScript", "Next.js", "FastAPI", "Gemini AI"],
-        github: "https://github.com/abhi3114-glitch/IdeaSynth",
-        demo: null
+        title: "K8s-Lite",
+        description: "Lightweight implementation of Kubernetes core components (Scheduler, Kubelet, API Server). Designed for edge computing and learning internals.",
+        category: "devops",
+        tech: ["Go", "Docker", "Linux Namespaces", "Networking"],
+        github: "https://github.com/abhi3114-glitch/K8s-Lite",
+        demo: null,
+        featured: true
     },
     {
         id: 5,
-        title: "GuardianEye",
-        description: "AI-powered real-time fall detection system using YOLO, Mediapipe, Flask & Telegram alerts for elderly care.",
-        category: "ai",
-        tech: ["Python", "YOLO", "MediaPipe", "Flask"],
-        github: "https://github.com/abhi3114-glitch/GuardianEye",
-        demo: null
+        title: "PulseMesh",
+        description: "Offline-capable peer-to-peer communication tool built with Electron. Enables secure messaging without internet access.",
+        category: "fullstack",
+        tech: ["Electron", "Node.js", "WebRTC", "React"],
+        github: "https://github.com/abhi3114-glitch/PulseMesh",
+        demo: null,
+        featured: false
     },
     {
         id: 6,
-        title: "CIAS",
-        description: "Cognitive Intelligence Augmentation System - AI-powered cognitive enhancement platform for productivity.",
-        category: "ai",
-        tech: ["TypeScript", "React", "AI", "ML"],
-        github: "https://github.com/abhi3114-glitch/CIAS",
-        demo: "https://cias-x.vercel.app"
+        title: "AUTODEV",
+        description: "A production-grade developer productivity platform that eliminates onboarding friction and environment inconsistency.",
+        category: "devops",
+        tech: ["TypeScript", "React", "Docker", "Node.js"],
+        github: "https://github.com/abhi3114-glitch/AUTODEV",
+        demo: null,
+        featured: false
     },
     {
         id: 7,
-        title: "CIVIL-MIND",
-        description: "Hybrid Constitutional Governance Platform - Bridging traditional governance with modern technology.",
+        title: "WEB-OS-NOVA",
+        description: "A browser-based Operating System simulation featuring window management, file system, and native-like apps.",
         category: "fullstack",
-        tech: ["TypeScript", "Next.js", "PostgreSQL"],
-        github: "https://github.com/abhi3114-glitch/CIVIL-MIND-",
-        demo: "https://civil-mind.vercel.app"
+        tech: ["JavaScript", "CSS3", "HTML5", "OS Design"],
+        github: "https://github.com/abhi3114-glitch/WEB-OS-NOVA",
+        demo: null,
+        featured: false
     },
     {
         id: 8,
         title: "LLM-COUNCIL-V2",
-        description: "Better, improved and free version of LLM Council - Multi-model AI collaboration platform.",
+        description: "Advanced multi-model AI collaboration platform orchestrating various LLMs for complex problem solving.",
         category: "ai",
-        tech: ["Python", "FastAPI", "React", "LLMs"],
+        tech: ["Python", "FastAPI", "React", "LangChain"],
         github: "https://github.com/abhi3114-glitch/LLM-COUNCIL-V2",
-        demo: "https://llm-council-v2.vercel.app"
+        demo: null,
+        featured: false
     },
     {
         id: 9,
-        title: "EduOrbit",
-        description: "Production-grade React/TypeScript app that visualizes study topics as 3D satellites with interactive dependency graphs.",
-        category: "fullstack",
-        tech: ["TypeScript", "React", "Three.js", "3D"],
-        github: "https://github.com/abhi3114-glitch/EduOrbit",
-        demo: null
+        title: "ThunderStrike-API",
+        description: "High-performance distributed API Gateway designed for microservices architecture with rate limiting and load balancing.",
+        category: "backend",
+        tech: ["Go", "gRPC", "Redis", "Distributed Systems"],
+        github: "https://github.com/abhi3114-glitch/ThunderStrike-API",
+        demo: null,
+        featured: false
     },
     {
         id: 10,
-        title: "INFRAMIND",
-        description: "Self-Healing Cloud & API Reliability Copilot - Intelligent infrastructure monitoring and auto-recovery.",
-        category: "devops",
-        tech: ["TypeScript", "Docker", "Kubernetes", "AI"],
-        github: "https://github.com/abhi3114-glitch/INFRAMIND",
-        demo: null
+        title: "X-CODE",
+        description: "Cloud-native IDE and code editor providing a VS Code-like experience in the browser with real-time collaboration.",
+        category: "fullstack",
+        tech: ["React", "Monaco Editor", "Node.js", "WebSockets"],
+        github: "https://github.com/abhi3114-glitch/X-CODE",
+        demo: null,
+        featured: false
     },
     {
         id: 11,
+        title: "VaultGrid",
+        description: "Decentralized secure storage system focusing on data privacy, sharding, and redundant storage across nodes.",
+        category: "backend",
+        tech: ["Rust", "Cryptography", "P2P", "Storage"],
+        github: "https://github.com/abhi3114-glitch/VaultGrid",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 12,
+        title: "SIDRES",
+        description: "Secure Identity & Digital Resilience System. Advanced authentication and security framework for distributed applications.",
+        category: "backend",
+        tech: ["Python", "Cryptography", "Zero-Trust", "Security"],
+        github: "https://github.com/abhi3114-glitch/SIDRES",
+        demo: null,
+        featured: false
+    },
+    {
+        id: 13,
         title: "DEPLOYSENSE",
         description: "Smart deployment monitoring and analytics platform for modern DevOps workflows.",
         category: "devops",
         tech: ["TypeScript", "Node.js", "Docker", "CI/CD"],
         github: "https://github.com/abhi3114-glitch/DEPLOYSENSE",
-        demo: null
-    },
-    {
-        id: 12,
-        title: "LifeEcho",
-        description: "Privacy-first behavioral forecasting system that constructs a 'future-you' digital twin using AI.",
-        category: "ai",
-        tech: ["Python", "ML", "TensorFlow", "Privacy"],
-        github: "https://github.com/abhi3114-glitch/LifeEcho",
-        demo: null
+        demo: null,
+        featured: false
     }
 ];
+
 
 // ============================================
 // TYPING ANIMATION
@@ -317,46 +364,163 @@ function animateCounters() {
 }
 
 // ============================================
+// SKILLS RENDERING
+// ============================================
+function renderSkills() {
+    const skillsContainer = document.getElementById('skillsCategories');
+    if (!skillsContainer) return;
+
+    if (typeof categories === 'undefined' || typeof techStack === 'undefined') {
+        console.error('Tech stack data not loaded');
+        return;
+    }
+
+    skillsContainer.innerHTML = '';
+
+    const skillsByCategory = {};
+    techStack.forEach(skill => {
+        if (!skillsByCategory[skill.cat]) {
+            skillsByCategory[skill.cat] = [];
+        }
+        skillsByCategory[skill.cat].push(skill);
+    });
+
+    Object.keys(categories).forEach((catKey, index) => {
+        if (skillsByCategory[catKey] && skillsByCategory[catKey].length > 0) {
+            const categoryDef = categories[catKey];
+            const skills = skillsByCategory[catKey];
+
+            const categoryHtml = `
+                <div class="skill-category reveal" style="transition-delay: ${index * 0.1}s">
+                    <h3>${categoryDef.icon} ${categoryDef.name}</h3>
+                    <div class="skill-items">
+                        ${skills.map(skill => `
+                            <div class="skill-item">
+                                <div class="skill-icon">${skill.svg}</div>
+                                <span class="skill-name">${skill.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            skillsContainer.innerHTML += categoryHtml;
+        }
+    });
+}
+
+// ============================================
 // PROJECTS RENDERING
 // ============================================
 function renderProjects(filter = 'all') {
-    const filteredProjects = filter === 'all'
-        ? projects
-        : projects.filter(project => project.category === filter);
-
-    projectsGrid.innerHTML = filteredProjects.map((project, index) => `
-        <div class="project-card reveal" style="animation-delay: ${index * 0.1}s">
-            <div class="project-content">
-                <div class="project-header">
-                    <span class="project-category">${project.category}</span>
-                    <div class="project-links">
-                        <a href="${project.github}" target="_blank" rel="noopener" class="project-link" aria-label="View Code">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                            </svg>
+    // 1. Render Featured Masterpieces (Fixed Top 4)
+    if (featuredGrid) {
+        const featuredProjects = projects.filter(project => project.featured);
+        featuredGrid.innerHTML = featuredProjects.map((project, index) => `
+            <div class="featured-card reveal" style="transition-delay: ${index * 0.1}s">
+                <div class="featured-content">
+                    <div class="featured-header">
+                        <span class="featured-badge">🏆 Masterpiece</span>
+                        <span class="project-category">${project.category}</span>
+                    </div>
+                    <h3 class="featured-title">${project.title}</h3>
+                    <p class="featured-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <div class="featured-links">
+                        <a href="${project.github}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                            GitHub
                         </a>
                         ${project.demo ? `
-                        <a href="${project.demo}" target="_blank" rel="noopener" class="project-link" aria-label="Live Demo">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                                <polyline points="15 3 21 3 21 9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
-                            </svg>
+                        <a href="${project.demo}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                            Live Demo
                         </a>
                         ` : ''}
                     </div>
                 </div>
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
-                <div class="project-tech">
-                    ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                <div class="featured-decoration"></div>
+            </div>
+        `).join('');
+    }
+
+    // 2. Render Other Projects (Filterable)
+    if (projectsGrid) {
+        const otherProjects = projects.filter(project => !project.featured);
+        const filteredProjects = filter === 'all'
+            ? otherProjects
+            : otherProjects.filter(project => project.category === filter);
+
+        projectsGrid.innerHTML = filteredProjects.map((project, index) => `
+            <div class="project-card reveal" style="animation-delay: ${index * 0.1}s">
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">${project.category}</span>
+                        <div class="project-links">
+                            <a href="${project.github}" target="_blank" rel="noopener" class="project-link" aria-label="View Code">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                </svg>
+                            </a>
+                            ${project.demo ? `
+                            <a href="${project.demo}" target="_blank" rel="noopener" class="project-link" aria-label="Live Demo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                            </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `).join('');
+    }
 
     // Re-trigger reveal animation
     setTimeout(revealOnScroll, 100);
+
+    // Initialize 3D Tilt Effect
+    setTimeout(initTiltEffect, 100);
+}
+
+// ============================================
+// 3D TILT EFFECT
+// ============================================
+function initTiltEffect() {
+    const cards = document.querySelectorAll('.project-card, .skill-category');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', handleTilt);
+        card.addEventListener('mouseleave', resetTilt);
+    });
+}
+
+function handleTilt(e) {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -5; // Max tilt (deg)
+    const rotateY = ((x - centerX) / centerX) * 5;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    card.style.transition = 'transform 0.1s ease';
+}
+
+function resetTilt(e) {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    card.style.transition = 'transform 0.5s ease';
 }
 
 // ============================================
@@ -518,6 +682,13 @@ magneticButtons.forEach(button => {
 window.addEventListener('load', () => {
     // Add loaded class to body for any CSS transitions
     document.body.classList.add('loaded');
+
+    // Hide preloader
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+        }, 500); // Small buffer for smoothness
+    }
 
     // Initialize components
     typeEffect();
